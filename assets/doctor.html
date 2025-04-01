@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="./doctor.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Well<span>Care</span></div>
+        <ul>
+            <li><a href="/login.html">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div id="section">
+        <div class="section">
+            <h2>Doctor Dashboard</h2>
+            <h4>Appointments</h4>
+            <div class="appointments">
+                <p id="appointment-details">No appointments yet.</p>
+                <button onclick="proceedAppointment()">Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadAppointment() {
+            let appointmentData = localStorage.getItem('appointment');
+    
+            if (appointmentData) {
+                let appointment = JSON.parse(appointmentData);
+                document.querySelector('.appointments').style.display = 'block';
+                document.getElementById('appointment-details').innerHTML = 
+                    `Appointment with <strong>${appointment.name}</strong> on <strong>${appointment.time}</strong>`;
+            }
+        }
+    
+        window.onload = loadAppointment; // Load appointment when the page loads
+    </script>
+    
+</body>
+</html>
