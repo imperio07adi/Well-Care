@@ -10,17 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Doctor data for the modal
     const doctors = {
-        "Dr. Sarah Johnson": {
+        "Dr. Sharman Joshi": {
             image: "https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg",
             specialty: "Cardiologist",
             rating: "4.9 (128 reviews)"
         },
-        "Dr. Michael Chen": {
+        "Dr. Mohan Mishra": {
             image: "https://img.freepik.com/free-photo/young-doctor-with-stethoscope-around-his-neck_1303-17817.jpg",
             specialty: "Neurologist",
             rating: "4.8 (97 reviews)"
         },
-        "Dr. Robert Williams": {
+        "Dr. Rehna Mehta": {
             image: "https://img.freepik.com/free-photo/portrait-confident-mature-doctor-man_1262-6206.jpg",
             specialty: "Orthopedic Surgeon",
             rating: "4.9 (142 reviews)"
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Connect all "Book Now" buttons to open the booking modal
     document.querySelectorAll('#bookNowHeader, #bookNowCta, #findDoctorHero, #searchDoctors').forEach(button => {
         button.addEventListener('click', function() {
-            openBookingModal("Dr. Sarah Johnson");
+            openBookingModal("Dr. Sharman Joshi");
         });
     });
     
