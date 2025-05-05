@@ -3,57 +3,642 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>WellCare | Book Doctor Appointments Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-
 </head>
-<body>
-    <nav class="navbar">
-        <div class="logo">Well<span>Care</span></div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Contact</a></li>
-        </ul>
-    </nav>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-heartbeat text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-blue-600">WellCare</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-blue-600 font-medium">Home</a>
+                <a href="#services" class="hover:text-blue-600 transition-all">Services</a>
+                <a href="#doctors" class="hover:text-blue-600 transition-all">Doctors</a>
+                <a href="#contact" class="hover:text-blue-600 transition-all">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="loginButton" class="hidden md:block px-4 py-2 rounded-full hover:bg-blue-50 hover:text-blue-600 transition-all">
+                    <i class="fas fa-user mr-2"></i>Login
+                </button>
+                <button id="bookNowHeader" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-all">
+                    <i class="fas fa-calendar-alt mr-2"></i>Book Now
+                </button>
+                <button class="md:hidden text-gray-600" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-    <div id="section">
-        <div class="section">
-            <h2>Login Page</h2>
-            <button onclick="showLoginForm('admin')">Admin</button>
-            <button onclick="showLoginForm('doctor')">Doctor</button>
-            <button onclick="showLoginForm('patient')">Patient</button>
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Find & Book Appointments with Top Doctors</h1>
+                <p class="text-xl mb-8 opacity-90">Access to 10,000+ healthcare providers across all specialties. Book instantly online 24/7.</p>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                    <button id="findDoctorHero" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all">
+                        <i class="fas fa-search mr-2"></i>Find a Doctor
+                    </button>
+                    <button id="virtualVisitHero" class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-all">
+                        <i class="fas fa-video mr-2"></i>Virtual Visit
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg" alt="Doctor illustration" class="w-full max-w-md rounded-lg shadow-xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="bg-gray-50 py-12 -mt-8">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-6 text-center">Find Your Perfect Doctor</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Specialty</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option>Select Specialty</option>
+                            <option>Cardiology</option>
+                            <option>Dermatology</option>
+                            <option>Pediatrics</option>
+                            <option>Neurology</option>
+                            <option>Orthopedics</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option>New York</option>
+                            <option>Los Angeles</option>
+                            <option>Chicago</option>
+                            <option>Houston</option>
+                            <option>Miami</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button id="searchDoctors" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-all">
+                            <i class="fas fa-search mr-2"></i>Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Specialties -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Popular Specialties</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Specialty Card 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-hover transition-all cursor-pointer">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Cardiology</h3>
+                    <p class="text-sm text-gray-500 mt-1">Heart specialists</p>
+                </div>
+                
+                <!-- Specialty Card 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-hover transition-all cursor-pointer">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-brain text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Neurology</h3>
+                    <p class="text-sm text-gray-500 mt-1">Brain & nerves</p>
+                </div>
+                
+                <!-- Specialty Card 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-hover transition-all cursor-pointer">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bone text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Orthopedics</h3>
+                    <p class="text-sm text-gray-500 mt-1">Bones & joints</p>
+                </div>
+                
+                <!-- Specialty Card 4 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-hover transition-all cursor-pointer">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-allergies text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Allergist</h3>
+                    <p class="text-sm text-gray-500 mt-1">Allergies & asthma</p>
+                </div>
+                
+                <!-- Specialty Card 5 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-hover transition-all cursor-pointer">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-child text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Pediatrics</h3>
+                    <p class="text-sm text-gray-500 mt-1">Child health</p>
+                </div>
+                
+                <!-- Specialty Card 6 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-hover transition-all cursor-pointer">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-eye text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Ophthalmology</h3>
+                    <p class="text-sm text-gray-500 mt-1">Eye care</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Doctors -->
+    <section id="doctors" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl font-bold">Our Top Rated Doctors</h2>
+                <a href="#doctors" class="text-blue-600 font-medium hover:underline">View All</a>
+            </div>
             
-            <div id="admin-login" class="login-form">
-                <h3>Admin Login</h3>
-                <form onsubmit="return login('admin')">
-                    <input type="email" placeholder="Email" id="admin-email">
-                    <input type="password" placeholder="Password" id="admin-password">
-                    <button type="submit"><a href="./assets/admin.html">Login</a></button>
-                </form>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Doctor Card 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden doctor-card transition-all">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg" alt="Dr. Sarah Johnson" class="w-full h-full object-cover doctor-image transition-all">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold">Dr. Sharman Joshi </h3>
+                                <p class="text-blue-600">Cardiologist</p>
+                            </div>
+                            <div class="flex items-center bg-yellow-50 px-2 py-1 rounded">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mt-3">Specializes in heart conditions and cardiovascular health with 12 years of experience.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                            <div class="flex space-x-1 text-gray-500">
+                                <i class="fas fa-map-marker-alt mt-1"></i>
+                                <span>New Delhi</span>
+                            </div>
+                            <button class="book-doctor bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-all" data-doctor="Dr. Sarah Johnson">
+                                Book Appointment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Doctor Card 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden doctor-card transition-all">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://img.freepik.com/free-photo/young-doctor-with-stethoscope-around-his-neck_1303-17817.jpg" alt="Dr. Michael Chen" class="w-full h-full object-cover doctor-image transition-all">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold">Dr. Mohan Mishra </h3>
+                                <p class="text-blue-600">Neurologist</p>
+                            </div>
+                            <div class="flex items-center bg-yellow-50 px-2 py-1 rounded">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mt-3">Expert in treating disorders of the nervous system with cutting-edge techniques.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                            <div class="flex space-x-1 text-gray-500">
+                                <i class="fas fa-map-marker-alt mt-1"></i>
+                                <span>Banglore</span>
+                            </div>
+                            <button class="book-doctor bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-all" data-doctor="Dr. Michael Chen">
+                                Book Appointment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Doctor Card 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden doctor-card transition-all">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://img.freepik.com/free-photo/portrait-confident-mature-doctor-man_1262-6206.jpg" alt="Dr. Robert Williams" class="w-full h-full object-cover doctor-image transition-all">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold">Dr. Rehna Mehta</h3>
+                                <p class="text-blue-600">Orthopedic Surgeon</p>
+                            </div>
+                            <div class="flex items-center bg-yellow-50 px-2 py-1 rounded">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mt-3">Specializes in joint replacements and sports medicine injuries.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                            <div class="flex space-x-1 text-gray-500">
+                                <i class="fas fa-map-marker-alt mt-1"></i>
+                                <span>Chennai</span>
+                            </div>
+                            <button class="book-doctor bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-all" data-doctor="Dr. Robert Williams">
+                                Book Appointment
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
-            <div id="doctor-login" class="login-form">
-                <h3>Doctor Login</h3>
-                <form onsubmit="return login('doctor')">
-                    <input type="email" placeholder="Email" id="doctor-email">
-                    <input type="password" placeholder="Password" id="doctor-password">
-                    <button type="submit"><a href="./assets/doctor.html">Login</a></button>
-                </form>
+        </div>
+    </section>
+
+    <!-- Appointment Booking Modal (Hidden by default) -->
+    <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">Book Appointment</h3>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Doctor Info -->
+                    <div class="md:col-span-1 bg-gray-50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center">
+                            <img id="modalDoctorImage" src="https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg" alt="Doctor" class="w-32 h-32 rounded-full object-cover mb-4">
+                            <h4 id="modalDoctorName" class="text-xl font-bold">Dr. Sarah Johnson</h4>
+                            <p id="modalDoctorSpecialty" class="text-blue-600 mb-2">Cardiologist</p>
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.9 (128 reviews)</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-gray-500 mt-1 mr-2"></i>
+                                <div>
+                                    <p class="font-medium">Location</p>
+                                    <p class="text-sm text-gray-600">WellCare Medical Center, 123 Health St, New York</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-gray-500 mt-1 mr-2"></i>
+                                <div>
+                                    <p class="font-medium">Availability</p>
+                                    <p class="text-sm text-gray-600">Mon-Fri: 9:00 AM - 5:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-dollar-sign text-gray-500 mt-1 mr-2"></i>
+                                <div>
+                                    <p class="font-medium">Consultation Fee</p>
+                                    <p class="text-sm text-gray-600">$150 (Insurance accepted)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Booking Form -->
+                    <div class="md:col-span-2">
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-3">Select Appointment Date</h4>
+                            <div class="grid grid-cols-7 gap-2 mb-4">
+                                <div class="text-center font-medium text-gray-500">S</div>
+                                <div class="text-center font-medium text-gray-500">M</div>
+                                <div class="text-center font-medium text-gray-500">T</div>
+                                <div class="text-center font-medium text-gray-500">W</div>
+                                <div class="text-center font-medium text-gray-500">T</div>
+                                <div class="text-center font-medium text-gray-500">F</div>
+                                <div class="text-center font-medium text-gray-500">S</div>
+                                
+                                <!-- Calendar days - simplified for demo -->
+                                <div class="text-center py-2 text-gray-400">28</div>
+                                <div class="text-center py-2 text-gray-400">29</div>
+                                <div class="text-center py-2 text-gray-400">30</div>
+                                <div class="text-center py-2">1</div>
+                                <div class="text-center py-2">2</div>
+                                <div class="text-center py-2">3</div>
+                                <div class="text-center py-2">4</div>
+                                
+                                <div class="text-center py-2">5</div>
+                                <div class="text-center py-2">6</div>
+                                <div class="text-center py-2">7</div>
+                                <div class="text-center py-2 bg-blue-100 text-blue-600 font-medium rounded-full">8</div>
+                                <div class="text-center py-2">9</div>
+                                <div class="text-center py-2">10</div>
+                                <div class="text-center py-2">11</div>
+                                
+                                <div class="text-center py-2">12</div>
+                                <div class="text-center py-2">13</div>
+                                <div class="text-center py-2">14</div>
+                                <div class="text-center py-2">15</div>
+                                <div class="text-center py-2">16</div>
+                                <div class="text-center py-2">17</div>
+                                <div class="text-center py-2">18</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-3">Available Time Slots</h4>
+                            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                                <div class="time-slot border border-gray-200 py-2 px-3 text-center rounded-lg cursor-pointer transition-all">9:00 AM</div>
+                                <div class="time-slot border border-gray-200 py-2 px-3 text-center rounded-lg cursor-pointer transition-all">10:00 AM</div>
+                                <div class="time-slot border border-gray-200 py-2 px-3 text-center rounded-lg cursor-pointer transition-all">11:00 AM</div>
+                                <div class="time-slot border border-gray-200 py-2 px-3 text-center rounded-lg cursor-pointer transition-all">1:00 PM</div>
+                                <div class="time-slot border border-gray-200 py-2 px-3 text-center rounded-lg cursor-pointer transition-all">2:00 PM</div>
+                                <div class="time-slot border border-gray-200 py-2 px-3 text-center rounded-lg cursor-pointer transition-all selected-slot">3:00 PM</div>
+                                <div class="time-slot border border-gray-200 py-2 px-3 text-center rounded-lg cursor-pointer transition-all">4:00 PM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-3">Reason for Visit</h4>
+                            <textarea class="w-full border border-gray-300 rounded-lg p-3 focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="Briefly describe your symptoms or reason for visit..."></textarea>
+                        </div>
+                        
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                            <div>
+                                <p class="text-gray-600">Consultation Fee</p>
+                                <p class="text-xl font-bold">$150</p>
+                            </div>
+                            <button id="confirmBooking" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-all">
+                                Confirm Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
-            <div id="patient-login" class="login-form">
-                <h3>Patient Login</h3>
-                <form onsubmit="return login('patient')">
-                    <input type="email" placeholder="Email" id="patient-email">
-                    <input type="password" placeholder="Password" id="patient-password">
-                    <button type="submit"><a href="./assets/patient.html">Login</a></button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="bg-white rounded-xl w-full max-w-md">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">Login to WellCare</h3>
+                    <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="remember" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                        </div>
+                        <a href="#" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-blue-700 transition-all mb-4">
+                        Login
+                    </button>
+                    
+                    <div class="text-center text-sm text-gray-600">
+                        Don't have an account? <a href="#" class="text-blue-600 hover:underline">Sign up</a>
+                    </div>
+                    
+                    <div class="relative my-6">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
+                            <i class="fab fa-google text-red-500 mr-2"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
+                            <i class="fab fa-facebook-f text-blue-600 mr-2"></i>
+                            <span>Facebook</span>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="script.js">
-    </script>
+    <!-- How It Works -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center px-6">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-blue-600 text-2xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Find a Doctor</h3>
+                    <p class="text-gray-600">Search by specialty, location, or doctor name. Read reviews and check availability.</p>
+                </div>
+                <div class="text-center px-6">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-blue-600 text-2xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Book Appointment</h3>
+                    <p class="text-gray-600">Select your preferred date and time. Instant confirmation with no phone calls needed.</p>
+                </div>
+                <div class="text-center px-6">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-blue-600 text-2xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Visit Doctor</h3>
+                    <p class="text-gray-600">Get reminders before your appointment. Complete paperwork online to save time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Patients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center mr-3">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">2 days ago</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Booking through WellCare was so easy and saved me so much time. Dr. Johnson was incredibly thorough and took the time to explain everything to me."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Lisa M." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Lisa M.</p>
+                            <p class="text-sm text-gray-500">New York</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center mr-3">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">1 week ago</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">"I was able to find a specialist in my area with same-day availability. The online forms made check-in a breeze. Highly recommend WellCare!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Robert T." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Robert T.</p>
+                            <p class="text-sm text-gray-500">Chicago</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center mr-3">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">2 weeks ago</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">"The virtual visit option was perfect when I was traveling. The doctor was able to diagnose my issue and call in a prescription to a local pharmacy."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah K." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Sarah K.</p>
+                            <p class="text-sm text-gray-500">Miami</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Book Your Appointment?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Join thousands of patients who have simplified their healthcare experience with WellCare.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button id="bookNowCta" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition-all">
+                    <i class="fas fa-calendar-alt mr-2"></i>Book Now
+                </button>
+                <button id="callUsCta" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-blue-600 transition-all">
+                    <i class="fas fa-phone-alt mr-2"></i>Call Us: (800) 555-1234
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-heartbeat text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold">WellCare</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Making healthcare accessible and convenient for everyone.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-all">Home</a></li>
+                        <li><a href="#doctors" class="text-gray-400 hover:text-white transition-all">Find a Doctor</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-all">Services</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-all">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-all">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Primary Care</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Specialty Care</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Virtual Visits</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Urgent Care</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Preventive Care</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">123 Health Street, New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">(800) 555-1234</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">hello@wellcare.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 WellCare. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-all">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-all">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
